@@ -1,3 +1,4 @@
+import os
 import whisper
 
 model = whisper.load_model("base")
@@ -9,8 +10,8 @@ import openai
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 
-# Set your OpenAI API key
-openai.api_key = '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'
+# Read OPENAI_API_KEY from the environment; never commit API credentials.
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 # Initialize the LangChain ChatOpenAI model
 model = ChatOpenAI(model="gpt-3.5-turbo", api_key=openai.api_key)
