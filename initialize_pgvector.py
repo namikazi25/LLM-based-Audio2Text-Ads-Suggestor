@@ -4,8 +4,9 @@ from langchain_postgres.vectorstores import PGVector
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 
-# Set your OpenAI API key
-os.environ["OPENAI_API_KEY"] = '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'
+# Read OPENAI_API_KEY from the environment; never commit API credentials.
+if not os.getenv("OPENAI_API_KEY"):
+    raise RuntimeError("Set the OPENAI_API_KEY environment variable before running this script.")
 
 # Initialize the OpenAI embeddings
 embeddings = OpenAIEmbeddings()
