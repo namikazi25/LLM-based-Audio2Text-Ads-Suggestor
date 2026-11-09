@@ -8,8 +8,10 @@ from generate_response import generate_response
 from streamlit_webrtc import webrtc_streamer, AudioProcessorBase, WebRtcMode
 import av
 
-# Set your OpenAI API key
-os.environ["OPENAI_API_KEY"] = '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'
+# Configure OPENAI_API_KEY in the environment before starting this app.
+if not os.getenv("OPENAI_API_KEY"):
+    st.error("Set the OPENAI_API_KEY environment variable before starting the app.")
+    st.stop()
 
 # Streamlit interface
 st.title("RAG-based Ad Recommendation System")
