@@ -5,8 +5,9 @@ from llmadsranking import generate_ad_recommendations
 from create_retriever import retrieve_ads
 from generate_response import generate_response
 
-# Set your OpenAI API key
-os.environ["OPENAI_API_KEY"] = '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'
+# Read OPENAI_API_KEY from the environment; never commit API credentials.
+if not os.getenv("OPENAI_API_KEY"):
+    raise RuntimeError("Set the OPENAI_API_KEY environment variable before running this script.")
 
 # Streamlit interface
 st.title("RAG-based Ad Recommendation System")
